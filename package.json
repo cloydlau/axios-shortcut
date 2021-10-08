@@ -1,0 +1,55 @@
+{
+  "name": "axios-shortcut",
+  "author": "cloydlau",
+  "version": "0.0.1",
+  "private": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloydlau/axios-shortcut"
+  },
+  "main": "./dist/axios-shortcut.umd.js",
+  "module": "./dist/axios-shortcut.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/axios-shortcut.es.js",
+      "require": "./dist/axios-shortcut.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "cov": "jest --ci --coverage",
+    "jest": "jest --watchAll",
+    "clean": "rd /s /q .\\node_modules",
+    "ri": "rd /s /q .\\node_modules && pnpm i"
+  },
+  "dependencies": {
+    "kayran": "latest",
+    "lodash-es": "latest"
+  },
+  "peerDependencies": {
+    "axios": "*",
+    "qs": "*"
+  },
+  "devDependencies": {
+    "@types/jest": "latest",
+    "axios": "latest",
+    "codecov": "latest",
+    "jest": "latest",
+    "qs": "latest",
+    "rollup-plugin-peer-deps-external": "latest",
+    "ts-jest": "latest",
+    "tslib": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "files": [
+    "dist"
+  ],
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  }
+}
