@@ -13,13 +13,11 @@ export default {
     },
     rollupOptions: {
       external: [
-        'axios',
         'qs',
       ],
       output: {
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          'axios': 'axios',
           'qs': 'qs',
         }
       },

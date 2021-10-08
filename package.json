@@ -30,7 +30,6 @@
     "lodash-es": "latest"
   },
   "peerDependencies": {
-    "axios": "*",
     "qs": "*"
   },
   "devDependencies": {
