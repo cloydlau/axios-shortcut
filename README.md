@@ -6,7 +6,7 @@ axios调用捷径
 
 ![NPM](https://nodei.co/npm/axios-shortcut.png)
 
-```bash
+```sh
 npm add axios-shortcut qs
 ```
 
