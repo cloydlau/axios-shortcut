@@ -9,10 +9,10 @@
     "url": "https://github.com/cloydlau/axios-shortcut"
   },
   "main": "./dist/axios-shortcut.umd.js",
-  "module": "./dist/axios-shortcut.es.js",
+  "module": "./dist/axios-shortcut.mjs",
   "exports": {
     ".": {
-      "import": "./dist/axios-shortcut.es.js",
+      "import": "./dist/axios-shortcut.mjs",
       "require": "./dist/axios-shortcut.umd.js"
     }
   },
