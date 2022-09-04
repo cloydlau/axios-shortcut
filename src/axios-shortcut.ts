@@ -1,5 +1,5 @@
 import { stringify } from 'qs'
-import { jsonToFormData } from 'kayran'
+import jsonToFormData from './jsonToFormData'
 
 const CONSOLE_PREFIX = import.meta.env.VITE_APP_CONSOLE_PREFIX
 const METHODS_WITH_REQUEST_BODY = ['PUT', 'POST', 'DELETE', 'PATCH']
