@@ -7,15 +7,15 @@ const METHODS_WITHOUT_REQUEST_BODY = ['GET', 'HEAD']
 const METHODS = METHODS_WITH_REQUEST_BODY.concat(METHODS_WITHOUT_REQUEST_BODY)
 
 const createAxiosShortcut = (axios: (args: any) => Promise<any>): {
-  'GET'?: (args: any) => Promise<any>,
-  'POST'?: (args: any) => Promise<any>,
-  'DELETE'?: (args: any) => Promise<any>,
-  'PATCH'?: (args: any) => Promise<any>,
-  'HEAD'?: (args: any) => Promise<any>,
-  'PUT'?: (args: any) => Promise<any>,
-  'DOWNLOAD'?: (args: any) => Promise<any>,
+  'GET'?: (args: any) => Promise<any>
+  'POST'?: (args: any) => Promise<any>
+  'DELETE'?: (args: any) => Promise<any>
+  'PATCH'?: (args: any) => Promise<any>
+  'HEAD'?: (args: any) => Promise<any>
+  'PUT'?: (args: any) => Promise<any>
+  'DOWNLOAD'?: (args: any) => Promise<any>
 } => {
-  let result = {}
+  const result = {}
 
   const download = (url, data, config: {
     method?: string
@@ -25,7 +25,7 @@ const createAxiosShortcut = (axios: (args: any) => Promise<any>): {
         responseType: 'blob',
         url,
         ...METHODS_WITH_REQUEST_BODY.includes(config.method.toUpperCase()) ? { data } : { params: data },
-        ...config
+        ...config,
       })
     } else {
       window.open(url + stringify(data, { addQueryPrefix: true }))
@@ -39,23 +39,23 @@ const createAxiosShortcut = (axios: (args: any) => Promise<any>): {
       url,
       method: 'POST',
       data: jsonToFormData(data),
-      ...config
+      ...config,
     })
   }
 
-  METHODS.map(v => {
+  METHODS.map((v) => {
     const value = (url, data, config = {}) => {
       return axios({
         method: v,
         url,
         ...METHODS_WITH_REQUEST_BODY.includes(v.toUpperCase()) ? { data } : { params: data },
-        ...config
+        ...config,
       })
     }
 
     value.download = function () {
       // arguments不适用于箭头函数
-      // @ts-ignore
+      // @ts-expect-error
       const [url, data, config] = arguments
       if (config?.method) {
         console.warn(`${CONSOLE_PREFIX}method无法重复指定`)
@@ -68,7 +68,7 @@ const createAxiosShortcut = (axios: (args: any) => Promise<any>): {
 
     value.upload = function () {
       // arguments不适用于箭头函数
-      // @ts-ignore
+      // @ts-expect-error
       const [url, data, config] = arguments
       if (config?.method) {
         console.warn(`${CONSOLE_PREFIX}method无法重复指定`)

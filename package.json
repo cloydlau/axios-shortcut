@@ -1,53 +1,71 @@
 {
   "name": "axios-shortcut",
+  "pascalCasedName": "AxiosShortcut",
   "author": "cloydlau",
   "version": "0.0.1",
+  "description": "Shortcuts for Axios.",
   "private": false,
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cloydlau/axios-shortcut"
+  "repository": "https://github.com/cloydlau/axios-shortcut",
+  "keywords": [
+    "axios"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/axios-shortcut.umd.js",
+      "import": "./dist/axios-shortcut.mjs"
+    },
+    "./*": "./*"
   },
   "main": "./dist/axios-shortcut.umd.js",
   "module": "./dist/axios-shortcut.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/axios-shortcut.mjs",
-      "require": "./dist/axios-shortcut.umd.js"
-    }
-  },
+  "unpkg": "./dist/axios-shortcut.umd.js",
+  "jsdelivr": "./dist/axios-shortcut.umd.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "docs"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --open",
     "serve": "vite preview",
-    "cov": "jest --ci --coverage",
-    "jest": "jest --watchAll",
-    "clean": "rd /s /q .\\node_modules",
-    "ri": "rd /s /q .\\node_modules && pnpm i"
+    "doc": "vitepress dev --open /README",
+    "build": "vite build",
+    "release": "npx case-police --fix && npx lint-staged && pnpm build && cl release"
   },
   "dependencies": {
-    "lodash-es": "latest"
+    "lodash-es": "latest",
+    "qs": "latest"
   },
   "peerDependencies": {
-    "qs": "*"
+    "axios": "*"
   },
   "devDependencies": {
-    "@types/jest": "latest",
-    "axios": "latest",
-    "codecov": "latest",
-    "jest": "latest",
-    "qs": "latest",
-    "rollup-plugin-peer-deps-external": "latest",
-    "ts-jest": "latest",
-    "tslib": "latest",
+    "@antfu/eslint-config": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@types/lodash-es": "latest",
+    "@types/node": "latest",
+    "case-police": "latest",
+    "eslint": "latest",
+    "husky": "latest",
+    "lint-staged": "latest",
     "typescript": "latest",
-    "vite": "latest"
+    "vite": "latest",
+    "vite-plugin-dts": "latest",
+    "vitepress": "latest",
+
+
+    "axios": "latest"
   },
-  "files": [
-    "dist"
-  ],
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+  
+  "lint-staged": {
+    "{src,__tests__}/**.*": [
+      "eslint --fix"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }

@@ -1,26 +1,28 @@
-//import peerDepsExternal from 'rollup-plugin-peer-deps-external'
-import { name } from './package.json'
+import type { ConfigEnv, UserConfigExport } from 'vite'
+import dts from 'vite-plugin-dts'
+import { name, pascalCasedName } from './package.json'
 
 // https://vitejs.dev/config/
-export default {
-  plugins: [
-    //peerDepsExternal(),
-  ],
-  build: {
-    lib: {
-      name,
-      entry: 'src/index.ts'
-    },
-    rollupOptions: {
-      external: [
-        'qs',
-      ],
-      output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-        globals: {
-          'qs': 'qs',
-        }
+export default ({ command }: ConfigEnv): UserConfigExport => {
+  return {
+    build: {
+      lib: {
+        name,
+        entry: 'src/index.ts',
       },
-    }
+      sourcemap: true,
+      rollupOptions: {
+        external: [
+          'axios',
+        ],
+        output: {
+          globals: {
+            [name]: pascalCasedName,
+            'axios': 'Axios',
+          },
+        },
+      },
+    },
+    plugins: [dts()],
   }
 }

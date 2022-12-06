@@ -1,14 +1,28 @@
-# axios-shortcut
+<h1 align="center">
+  <a href="https://npmjs.com/package/axios-shortcut" target="_blank" rel="noopener noreferrer">
+    Axios Shortcut <sup><img alt="version" src="https://versionbadg.es/cloydlau/axios-shortcut.svg"></sup>
+  </a>
+</h1>
 
-axios调用捷径
+<p align="center">
+  Shortcuts for Axios
+</p>
 
-## Installation
+<p align="center">
+  <a href="https://bundlephobia.com/package/axios-shortcut"><img alt="minzipped size" src="https://img.shields.io/bundlephobia/minzip/axios-shortcut"></a>
+  <a href="https://eslint.org"><img alt="code style" src="https://img.shields.io/badge/code_style-ESLint-4B32C3.svg?logo=eslint"></a>
+  <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits&logoColor=white"></a>
+</p>
 
-![NPM](https://nodei.co/npm/axios-shortcut.png)
+<br>
 
-```sh
-npm add axios-shortcut qs
+## Install
+
+```shell
+npm add axios-shortcut
 ```
+
+> Peer Dependency: `axios`
 
 <br>
 
@@ -18,11 +32,11 @@ npm add axios-shortcut qs
 import createAxiosShortcut from 'axios-shortcut'
 import request from '@/utils/request'
 const axiosShortcut = createAxiosShortcut(
-  request // axios或axios实例
+  request // Axios or Axios instance
 )
 
 // 注册全局方法
-for (let k in axiosShortcut) {
+for (const k in axiosShortcut) {
   // Vue 3
   app.config.globalProperties[`$${k}`] = axiosShortcut[k]
 
@@ -52,9 +66,9 @@ axiosShortcut.POST()
 
 <br>
 
-## 上传
+## Upload
 
-> MIME type为multipart/form-data
+MIME type: `multipart/form-data`
 
 ```ts
 /**
@@ -68,9 +82,9 @@ this.$POST.upload // 请求方式可以更换
 
 <br>
 
-## 下载
+## Download
 
-**AJAX请求**
+### AJAX
 
 ```ts
 /**
@@ -82,7 +96,7 @@ this.$POST.upload // 请求方式可以更换
 this.$GET.download // 请求方式可以更换
 ```
 
-**HTTP请求**
+### HTTP
 
 ```ts
 /**
@@ -101,7 +115,7 @@ this.$DOWNLOAD
 // 可以在响应拦截器中判断
 
 request.interceptors.response.use(
-  response => {
+  (response) => {
     // download
     if (response.config.responseType === 'blob') {
       console.log('导出成功')
