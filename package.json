@@ -1,10 +1,10 @@
 {
   "name": "axios-shortcut",
   "pascalCasedName": "AxiosShortcut",
-  "author": "cloydlau",
   "version": "0.0.1",
-  "description": "Shortcuts for Axios.",
   "private": false,
+  "description": "Shortcuts for Axios.",
+  "author": "cloydlau",
   "license": "MIT",
   "repository": "https://github.com/cloydlau/axios-shortcut",
   "keywords": [
@@ -34,12 +34,12 @@
     "build": "vite build",
     "release": "npx case-police --fix && npx lint-staged && pnpm build && cl release"
   },
+  "peerDependencies": {
+    "axios": "*"
+  },
   "dependencies": {
     "lodash-es": "latest",
     "qs": "latest"
-  },
-  "peerDependencies": {
-    "axios": "*"
   },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
@@ -47,6 +47,8 @@
     "@commitlint/config-conventional": "latest",
     "@types/lodash-es": "latest",
     "@types/node": "latest",
+    "@types/qs": "latest",
+    "axios": "latest",
     "case-police": "latest",
     "eslint": "latest",
     "husky": "latest",
@@ -54,12 +56,8 @@
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
-    "vitepress": "latest",
-
-
-    "axios": "latest"
+    "vitepress": "latest"
   },
-  
   "lint-staged": {
     "{src,__tests__}/**.*": [
       "eslint --fix"

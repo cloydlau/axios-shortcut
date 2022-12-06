@@ -1,88 +1,75 @@
 import { stringify } from 'qs'
-import jsonToFormData from './jsonToFormData'
+import { identity } from 'lodash-es'
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-const CONSOLE_PREFIX = import.meta.env.VITE_APP_CONSOLE_PREFIX
-const METHODS_WITH_REQUEST_BODY = ['PUT', 'POST', 'DELETE', 'PATCH']
-const METHODS_WITHOUT_REQUEST_BODY = ['GET', 'HEAD']
-const METHODS = METHODS_WITH_REQUEST_BODY.concat(METHODS_WITHOUT_REQUEST_BODY)
-
-const createAxiosShortcut = (axios: (args: any) => Promise<any>): {
-  'GET'?: (args: any) => Promise<any>
-  'POST'?: (args: any) => Promise<any>
-  'DELETE'?: (args: any) => Promise<any>
-  'PATCH'?: (args: any) => Promise<any>
-  'HEAD'?: (args: any) => Promise<any>
-  'PUT'?: (args: any) => Promise<any>
-  'DOWNLOAD'?: (args: any) => Promise<any>
-} => {
-  const result = {}
-
-  const download = (url, data, config: {
-    method?: string
-  } = {}) => {
-    if (config.method) {
-      return axios({
-        responseType: 'blob',
-        url,
-        ...METHODS_WITH_REQUEST_BODY.includes(config.method.toUpperCase()) ? { data } : { params: data },
-        ...config,
-      })
-    } else {
-      window.open(url + stringify(data, { addQueryPrefix: true }))
+function jsonToFormData(
+  json: any,
+  mapFn: (value?: any, key?: any) => any = identity,
+): FormData {
+  const formData = new FormData()
+  for (const k in json) {
+    const value = mapFn(json[k], k)
+    if (value !== undefined) {
+      formData.append(k, value)
     }
   }
-
-  (result as any).DOWNLOAD = download
-
-  const upload = (url, data, config) => {
-    return axios({
-      url,
-      method: 'POST',
-      data: jsonToFormData(data),
-      ...config,
-    })
-  }
-
-  METHODS.map((v) => {
-    const value = (url, data, config = {}) => {
-      return axios({
-        method: v,
-        url,
-        ...METHODS_WITH_REQUEST_BODY.includes(v.toUpperCase()) ? { data } : { params: data },
-        ...config,
-      })
-    }
-
-    value.download = function () {
-      // arguments不适用于箭头函数
-      // @ts-expect-error
-      const [url, data, config] = arguments
-      if (config?.method) {
-        console.warn(`${CONSOLE_PREFIX}method无法重复指定`)
-      }
-      return download(url, data, {
-        ...config,
-        method: v,
-      })
-    }
-
-    value.upload = function () {
-      // arguments不适用于箭头函数
-      // @ts-expect-error
-      const [url, data, config] = arguments
-      if (config?.method) {
-        console.warn(`${CONSOLE_PREFIX}method无法重复指定`)
-      }
-      return upload(url, data, {
-        ...config,
-        method: v,
-      })
-    }
-
-    result[v] = value
-  })
-
-  return result
+  return formData
 }
 
-export default createAxiosShortcut
+const methods = ['GET', 'HEAD', 'OPTIONS', 'DELETE', 'TRACE', 'CONNECT']
+const methodsHaveRequestBody = ['PUT', 'POST', 'PATCH']
+const methodsHaveResponseBody = ['GET', 'POST', 'CONNECT', 'OPTIONS', 'PATCH']
+
+export default <T = any, R = AxiosResponse<T>, D = any>(axios: AxiosInstance): {
+  'PUT': (url: string, data?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'POST': (url: string, data?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'PATCH': (url: string, data?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'GET': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'HEAD': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'DELETE': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'OPTIONS': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'TRACE': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'CONNECT': (url: string, params?: D, config?: AxiosRequestConfig<D>) => Promise<R>
+  'DOWNLOAD': (url: string, params?: D) => void
+} => ({
+  ...Object.fromEntries(Array.from(methods, (method) => {
+    const value = (url: string, data?: D, config?: AxiosRequestConfig<D>) => {
+      return axios({
+        method,
+        url,
+        ...methodsHaveRequestBody.includes(method.toUpperCase()) ? { data } : { params: data },
+        ...config,
+      })
+    }
+
+    if (methodsHaveResponseBody.includes(method)) {
+      value.download = (url: string, dataOrParams?: D, config?: AxiosRequestConfig<D>) => {
+        return axios({
+          responseType: 'blob',
+          url,
+          method,
+          ...methodsHaveRequestBody.includes(method.toUpperCase())
+            ? { data: dataOrParams }
+            : { params: dataOrParams },
+          ...config,
+        })
+      }
+    }
+
+    if (methodsHaveRequestBody.includes(method)) {
+      value.upload = (url: string, data?: D, config?: AxiosRequestConfig<D>) => {
+        return axios({
+          url,
+          method: 'POST',
+          data: jsonToFormData(data),
+          ...config,
+        })
+      }
+    }
+
+    return [method, value]
+  })),
+  DOWNLOAD: (url: string, params?: any) => {
+    window.open(url + stringify(params, { addQueryPrefix: true }))
+  },
+})

@@ -109,19 +109,21 @@ this.$DOWNLOAD
 
 <br>
 
-**给上传、下载添加全局回调**
+## Compare to Axios
 
-```ts
-// 可以在响应拦截器中判断
+| Axios                        | Axios Shortcut                       |
+| ---------------------------- | ------------------------------------ |
+| get(url[, config])           | **GET(url[, params[, config]])**     |
+| delete(url[, config])        | **DELETE(url[, params[, config]])**  |
+| head(url[, config])          | **HEAD(url[, params[, config]])**    |
+| options(url[, config])       | **OPTIONS(url[, params[, config]])** |
+| post(url[, data[, config]])  | POST(url[, data[, config]])          |
+| put(url[, data[, config]])   | PUT(url[, data[, config]])           |
+| patch(url[, data[, config]]) | PATCH(url[, data[, config]])         |
+| -                            | TRACE(url[, params[, config]])       |
+| -                            | CONNECT(url[, params[, config]])     |
+| request(config)              | -                                    |
+| getUri([config])             | -                                    |
+| -                            | DOWNLOAD()                           |
+| -                            | -                                    |
 
-request.interceptors.response.use(
-  (response) => {
-    // download
-    if (response.config.responseType === 'blob') {
-      console.log('导出成功')
-    }
-  },
-)
-```
-
-<br>
