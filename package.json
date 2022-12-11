@@ -34,13 +34,6 @@
     "build": "vite build",
     "release": "npx case-police --fix && npx lint-staged && pnpm build && cl release"
   },
-  "peerDependencies": {
-    "axios": "*"
-  },
-  "dependencies": {
-    "lodash-es": "latest",
-    "qs": "latest"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "latest",
     "@commitlint/cli": "latest",

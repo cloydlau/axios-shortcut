@@ -5,10 +5,11 @@
 </h1>
 
 <p align="center">
-  Shortcuts for Axios
+  Shortcuts for axios.
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=dependencies"><img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-green.svg"></a>
   <a href="https://bundlephobia.com/package/axios-shortcut"><img alt="minzipped size" src="https://img.shields.io/bundlephobia/minzip/axios-shortcut"></a>
   <a href="https://eslint.org"><img alt="code style" src="https://img.shields.io/badge/code_style-ESLint-4B32C3.svg?logo=eslint"></a>
   <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits&logoColor=white"></a>
@@ -16,7 +17,26 @@
 
 <br>
 
+## Compare to Axios
+
+| Axios                        | Axios Instance               | Axios Shortcut                       |
+| ---------------------------- | ---------------------------- | ------------------------------------ |
+| -                            | getUri([config])             | -                                    |
+| request(config)              | request(config)              | -                                    |
+| get(url[, config])           | get(url[, config])           | **GET(url[, params[, config]])**     |
+| delete(url[, config])        | delete(url[, config])        | **DELETE(url[, params[, config]])**  |
+| head(url[, config])          | head(url[, config])          | **HEAD(url[, params[, config]])**    |
+| options(url[, config])       | options(url[, config])       | **OPTIONS(url[, params[, config]])** |
+| post(url[, data[, config]])  | post(url[, data[, config]])  | POST(url[, data[, config]])          |
+| put(url[, data[, config]])   | put(url[, data[, config]])   | PUT(url[, data[, config]])           |
+| patch(url[, data[, config]]) | patch(url[, data[, config]]) | PATCH(url[, data[, config]])         |
+| -                            | -                            | DOWNLOAD(url[, fileName])            |
+
+<br>
+
 ## Install
+
+### NPM
 
 ```shell
 npm add axios-shortcut
@@ -53,8 +73,6 @@ npm add axios-shortcut
       POST,
       PUT,
       PATCH,
-      TRACE,
-      CONNECT,
       DOWNLOAD,
     } = AxiosShortcut(axios)
   </script>
@@ -86,8 +104,6 @@ npm add axios-shortcut
       POST,
       PUT,
       PATCH,
-      TRACE,
-      CONNECT,
       DOWNLOAD,
     } = AxiosShortcut(axios)
   </script>
@@ -98,17 +114,28 @@ npm add axios-shortcut
 
 <br>
 
-## AJAX
+## Usage
+
+### Create from Axios
 
 ```ts
-import createAxiosShortcut from 'axios-shortcut'
-import request from '@/utils/request'
-const axiosShortcut = createAxiosShortcut(
-  request // Axios or Axios instance
-)
+import AxiosShortcut from 'axios-shortcut'
+import axios from 'axios'
+const axiosShortcut = AxiosShortcut(axios)
+```
 
-// 注册全局方法
-for (const k in axiosShortcut) {
+### Create from Axios Instance
+
+```ts
+import AxiosShortcut from 'axios-shortcut'
+import request from '@/utils/request'
+const axiosShortcut = AxiosShortcut(request)
+```
+
+### Register as Global Properties in Vue
+
+```ts
+for (const method in axiosShortcut) {
   // Vue 3
   app.config.globalProperties[`$${k}`] = axiosShortcut[k]
 
@@ -117,85 +144,49 @@ for (const k in axiosShortcut) {
     value: axiosShortcut[k]
   })
 }
-
-/**
- * 快捷方式
- * @param {string} url 接口地址
- * @param {object} data 接口参数（GET/HEAD请求默认使用params）
- * @param {object} config axios配置
- * @returns {Promise<any>} 接口返回
- */
-this.$POST
-this.$GET
-this.$PATCH
-this.$PUT
-this.$DELETE
-this.$HEAD
-
-// 或者直接使用
-axiosShortcut.POST()
 ```
 
 <br>
 
 ## Upload
 
-MIME type: `multipart/form-data`
+> MIME type: `'multipart/form-data'`
 
 ```ts
-/**
- * @param {string} url 接口地址
- * @param {object} data 接口参数（GET/HEAD请求默认使用params）
- * @param {object} config axios配置
- * @returns {Promise<any>} 接口返回
- */
-this.$POST.upload // 请求方式可以更换
+function upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
 ```
+
+- `PUT.upload`
+- `POST.upload`
+- `PATCH.upload`
 
 <br>
 
 ## Download
 
-### AJAX
+> responseType: `'blob'`
 
 ```ts
-/**
- * @param {string} url 接口地址
- * @param {object} data 接口参数（GET/HEAD请求默认使用params）
- * @param {object} config axios配置
- * @returns {Promise<any>} 接口返回
- */
-this.$GET.download // 请求方式可以更换
+function download(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
 ```
 
-### HTTP
+- `GET.download`
+- `POST.download`
+- `PATCH.download`
+- `OPTIONS.download`
+
+### Download Static Resources
 
 ```ts
-/**
- * @param {string} url 接口地址
- * @param {object} params 接口参数
- * @param {object} config axios配置
- */
-this.$DOWNLOAD
+function DOWNLOAD(url: string, fileName?: string): Promise<void>
+```
+
+```ts
+// Example
+
+DOWNLOAD('https://xxx.jpg', 'abc.jpg').then(() => {
+  // Download completed
+})
 ```
 
 <br>
-
-## Compare to Axios
-
-| Axios                        | Axios Shortcut                       |
-| ---------------------------- | ------------------------------------ |
-| get(url[, config])           | **GET(url[, params[, config]])**     |
-| delete(url[, config])        | **DELETE(url[, params[, config]])**  |
-| head(url[, config])          | **HEAD(url[, params[, config]])**    |
-| options(url[, config])       | **OPTIONS(url[, params[, config]])** |
-| post(url[, data[, config]])  | POST(url[, data[, config]])          |
-| put(url[, data[, config]])   | PUT(url[, data[, config]])           |
-| patch(url[, data[, config]]) | PATCH(url[, data[, config]])         |
-| -                            | TRACE(url[, params[, config]])       |
-| -                            | CONNECT(url[, params[, config]])     |
-| request(config)              | -                                    |
-| getUri([config])             | -                                    |
-| -                            | DOWNLOAD()                           |
-| -                            | -                                    |
-
