@@ -135,7 +135,7 @@ const axiosShortcut = AxiosShortcut(request)
 ### Register as Global Properties in Vue
 
 ```ts
-for (const method in axiosShortcut) {
+for (const k in axiosShortcut) {
   // Vue 3
   app.config.globalProperties[`$${k}`] = axiosShortcut[k]
 
