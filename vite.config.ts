@@ -1,6 +1,6 @@
 import type { ConfigEnv, UserConfigExport } from 'vite'
 import dts from 'vite-plugin-dts'
-import { name, pascalCasedName } from './package.json'
+import { PascalCasedName, name } from './package.json'
 
 // https://vitejs.dev/config/
 export default ({ command }: ConfigEnv): UserConfigExport => {
@@ -12,13 +12,9 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       },
       sourcemap: true,
       rollupOptions: {
-        external: [
-          'axios',
-        ],
         output: {
           globals: {
-            [name]: pascalCasedName,
-            'axios': 'Axios',
+            [name]: PascalCasedName,
           },
         },
       },

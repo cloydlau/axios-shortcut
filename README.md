@@ -22,7 +22,79 @@
 npm add axios-shortcut
 ```
 
-> Peer Dependency: `axios`
+### CDN + ESM
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <script type="importmap">
+    {
+      "imports": {
+        "axios": "https://unpkg.com/axios/dist/esm/axios.min.js",
+        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.1/dist/axios-shortcut.mjs"
+      }
+    }
+  </script>
+  <script type="module">
+    import AxiosShortcut from 'axios-shortcut'
+    import axios from 'axios'
+
+    const {
+      GET,
+      DELETE,
+      HEAD,
+      OPTIONS,
+      POST,
+      PUT,
+      PATCH,
+      TRACE,
+      CONNECT,
+      DOWNLOAD,
+    } = AxiosShortcut(axios)
+  </script>
+</body>
+
+</html>
+
+```
+
+### CDN + UMD
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios-shortcut@0.1"></script>
+  <script>
+    const {
+      GET,
+      DELETE,
+      HEAD,
+      OPTIONS,
+      POST,
+      PUT,
+      PATCH,
+      TRACE,
+      CONNECT,
+      DOWNLOAD,
+    } = AxiosShortcut(axios)
+  </script>
+</body>
+
+</html>
+```
 
 <br>
 
