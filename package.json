@@ -3,7 +3,7 @@
   "PascalCasedName": "AxiosShortcut",
   "version": "0.1.0",
   "private": false,
-  "description": "Shortcuts for Axios.",
+  "description": "Shortcuts for axios.",
   "author": "cloydlau",
   "license": "MIT",
   "repository": "https://github.com/cloydlau/axios-shortcut",
