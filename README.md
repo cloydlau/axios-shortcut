@@ -57,7 +57,7 @@ npm add axios-shortcut
     {
       "imports": {
         "axios": "https://unpkg.com/axios/dist/esm/axios.min.js",
-        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.1/dist/axios-shortcut.mjs"
+        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.2/dist/axios-shortcut.mjs"
       }
     }
   </script>
@@ -150,7 +150,7 @@ for (const k in axiosShortcut) {
 
 ## Upload
 
-> MIME type: `'multipart/form-data'`
+Request Header: `Content-Type: multipart/form-data`
 
 ```ts
 function upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
@@ -164,7 +164,11 @@ function upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any
 
 ## Download
 
-> responseType: `'blob'`
+responseType: `'blob'`
+
+Note the default value of `XMLHttpRequest.responseType` is `'text'`
+
+And the default value of `AxiosRequestConfig.responseType` is `'json'`
 
 ```ts
 function download(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
@@ -175,16 +179,38 @@ function download(url: string, dataOrParams?: any, config?: AxiosRequestConfig<a
 - `PATCH.download`
 - `OPTIONS.download`
 
-### Download Static Resources
+<br>
+
+## Download Static Resources
+
+Response Header: `Content-Disposition: attachment`
 
 ```ts
 function DOWNLOAD(url: string, fileName?: string): Promise<void>
 ```
 
-```ts
-// Example
+### Remote Static Resources (URLs)
 
-DOWNLOAD('https://xxx.jpg', 'abc.jpg').then(() => {
+```ts
+DOWNLOAD('https://xxx.jpg', 'xxx.jpg').then(() => {
+  // Download completed
+})
+```
+
+### Local Static Resources (Object URLs)
+
+```ts
+// Plain Text
+const text = 'Hello World'
+const objectURL = URL.createObjectURL(new Blob([text], { type: 'text/plain' }))
+DOWNLOAD(objectURL, 'xxx.txt').then(() => {
+  // Download completed
+})
+
+// JSON
+const json = { hello: 'world' }
+const objectURL = URL.createObjectURL(new Blob([JSON.stringify(json)], { type: 'application/json' }))
+DOWNLOAD(objectURL, 'xxx.json').then(() => {
   // Download completed
 })
 ```
