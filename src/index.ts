@@ -61,7 +61,7 @@ export default (axios: AxiosInstance) => ({
 
     return [method, value]
   })),
-  DOWNLOAD: async (url: string, fileName = ''): Promise<void> => {
+  DOWNLOAD: (url: string, fileName = ''): void => {
     // 如果是浏览器支持预览的文件会优先预览，否则才会下载
     // window.open(url + stringify(params, { addQueryPrefix: true }))
 
@@ -72,14 +72,13 @@ export default (axios: AxiosInstance) => ({
     // Content-Disposition 响应头中指定的文件名优先级更高
     a.download = fileName
 
-    // appendChild 和 remove 操作主要是为了兼容 FireFox 浏览器
-    // 在 FireFox 浏览器下调用该方法如果不将创建的 <a> 标签添加到 body 里，点击链接不会有任何反应，无法触发下载
+    // appendChild 和 remove 操作主要是为了兼容 Firefox 浏览器
+    // 在 Firefox 浏览器下调用该方法如果不将创建的 <a> 标签添加到 body 里，点击链接不会有任何反应，无法触发下载
     // 而在 Chrome 浏览器中则不受此影响
     document.body.appendChild(a)
 
     a.click()
     URL.revokeObjectURL(a.href)
     document.body.removeChild(a)
-    return Promise.resolve()
   },
 })

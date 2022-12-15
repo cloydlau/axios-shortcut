@@ -20,6 +20,4 @@ POST('post')
 
 const text = 'Hello World'
 const objectURL = URL.createObjectURL(new Blob([text], { type: 'text/plain' }))
-DOWNLOAD(objectURL, 'xxx.txt').then((e) => {
-  console.log('Download completed', e)
-})
+DOWNLOAD(objectURL, 'xxx.txt')

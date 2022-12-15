@@ -1,7 +1,7 @@
 {
   "name": "axios-shortcut",
   "PascalCasedName": "AxiosShortcut",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Shortcuts for axios.",
   "author": "cloydlau",

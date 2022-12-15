@@ -153,7 +153,7 @@ for (const k in axiosShortcut) {
 Request Header: `Content-Type: multipart/form-data`
 
 ```ts
-function upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
+upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 ```
 
 - `PUT.upload`
@@ -171,7 +171,7 @@ Note the default value of `XMLHttpRequest.responseType` is `'text'`
 And the default value of `AxiosRequestConfig.responseType` is `'json'`
 
 ```ts
-function download(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
+(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 ```
 
 - `GET.download`
@@ -186,15 +186,13 @@ function download(url: string, dataOrParams?: any, config?: AxiosRequestConfig<a
 Response Header: `Content-Disposition: attachment`
 
 ```ts
-function DOWNLOAD(url: string, fileName?: string): Promise<void>
+(url: string, fileName = '') => void
 ```
 
 ### Remote Static Resources (URLs)
 
 ```ts
-DOWNLOAD('https://xxx.jpg', 'xxx.jpg').then(() => {
-  // Download completed
-})
+DOWNLOAD('https://xxx.jpg', 'xxx.jpg')
 ```
 
 ### Local Static Resources (Object URLs)
@@ -203,16 +201,12 @@ DOWNLOAD('https://xxx.jpg', 'xxx.jpg').then(() => {
 // Plain Text
 const text = 'Hello World'
 const objectURL = URL.createObjectURL(new Blob([text], { type: 'text/plain' }))
-DOWNLOAD(objectURL, 'xxx.txt').then(() => {
-  // Download completed
-})
+DOWNLOAD(objectURL, 'xxx.txt')
 
 // JSON
 const json = { hello: 'world' }
 const objectURL = URL.createObjectURL(new Blob([JSON.stringify(json)], { type: 'application/json' }))
-DOWNLOAD(objectURL, 'xxx.json').then(() => {
-  // Download completed
-})
+DOWNLOAD(objectURL, 'xxx.json')
 ```
 
 <br>
