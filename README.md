@@ -57,7 +57,7 @@ npm add axios-shortcut
     {
       "imports": {
         "axios": "https://unpkg.com/axios/dist/esm/axios.min.js",
-        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.2/dist/axios-shortcut.mjs"
+        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.1/dist/axios-shortcut.mjs"
       }
     }
   </script>
