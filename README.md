@@ -210,3 +210,9 @@ DOWNLOAD(objectURL, 'xxx.json')
 ```
 
 <br>
+
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/cloydlau/axios-shortcut/releases).
+
+<br>
