@@ -3,6 +3,7 @@
   "PascalCasedName": "AxiosShortcut",
   "version": "0.1.1",
   "private": false,
+  "packageManager": "pnpm@7.18.2",
   "description": "Shortcuts for axios.",
   "author": "cloydlau",
   "license": "MIT",

@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  Shortcuts for axios.
+  Shortcuts for Axios.
 </p>
 
 <p align="center">
