@@ -17,12 +17,12 @@ const methodsHaveResponseBody = ['GET', 'POST', 'PATCH', 'OPTIONS']
 
 type Method = (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 
-type MethodCanUpload = {
+interface MethodCanUpload {
   (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
   upload: (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 }
 
-type MethodCanDownload = {
+interface MethodCanDownload {
   (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
   download: (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 }
