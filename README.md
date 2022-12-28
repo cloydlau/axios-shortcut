@@ -39,7 +39,7 @@
 ### NPM
 
 ```shell
-npm add axios-shortcut
+npm i axios-shortcut
 ```
 
 ### CDN + ESM
