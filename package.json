@@ -35,10 +35,9 @@
     "serve": "vite preview",
     "doc": "vitepress dev --open /README",
     "build": "vite build",
-    "release": "npx case-police --fix && npx lint-staged && pnpm build && cl release"
+    "release": "npx lint-staged && pnpm build && cl release"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.34.0",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@types/lodash-es": "^4.17.6",
@@ -46,18 +45,17 @@
     "@types/qs": "^6.9.7",
     "axios": "^1.2.1",
     "case-police": "^0.5.10",
-    "eslint": "^8.30.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
+    "rome": "^11.0.0",
     "typescript": "^4.9.4",
     "vite": "^4.0.1",
     "vite-plugin-dts": "^1.7.1",
     "vitepress": "1.0.0-alpha.31"
   },
   "lint-staged": {
-    "{src,__tests__}/**.*": [
-      "eslint --fix"
-    ]
+    "{src,__tests__}/**.*": "rome check",
+    "*.md": "case-police --fix"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

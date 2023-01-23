@@ -28,39 +28,46 @@ interface MethodCanDownload {
 }
 
 export default (axios: AxiosInstance) => ({
-  ...Object.fromEntries(Array.from(methods, (method) => {
-    const value = <Method>((url, dataOrParams, config) => axios({
-      // config 放在前面的原因: 在 config 中二次指定 method / url / data 是无效的
-      // axios.post('123', { a: 1 }, { method: 'put', url: '456', data: { a: 2 } })
-      ...config,
-      ...methodsHaveRequestBody.includes(method.toUpperCase()) ? { data: dataOrParams } : { params: dataOrParams },
-      method,
-      url,
-    }))
+  ...Object.fromEntries(
+    Array.from(methods, (method) => {
+      const value = <Method>((url, dataOrParams, config) =>
+        axios({
+          // config 放在前面的原因: 在 config 中二次指定 method / url / data 是无效的
+          // axios.post('123', { a: 1 }, { method: 'put', url: '456', data: { a: 2 } })
+          ...config,
+          ...(methodsHaveRequestBody.includes(method.toUpperCase())
+            ? { data: dataOrParams }
+            : { params: dataOrParams }),
+          method,
+          url,
+        }))
 
-    if (methodsHaveRequestBody.includes(method)) {
-      (value as MethodCanUpload).upload = (url, dataOrParams, config) => axios({
-        ...config,
-        data: plainObjectToFormData(dataOrParams),
-        method,
-        url,
-      })
-    }
+      if (methodsHaveRequestBody.includes(method)) {
+        ;(value as MethodCanUpload).upload = (url, dataOrParams, config) =>
+          axios({
+            ...config,
+            data: plainObjectToFormData(dataOrParams),
+            method,
+            url,
+          })
+      }
 
-    if (methodsHaveResponseBody.includes(method)) {
-      (value as MethodCanDownload).download = (url, dataOrParams, config) => axios({
-        ...config,
-        ...methodsHaveRequestBody.includes(method.toUpperCase())
-          ? { data: dataOrParams }
-          : { params: dataOrParams },
-        responseType: 'blob',
-        method,
-        url,
-      })
-    }
+      if (methodsHaveResponseBody.includes(method)) {
+        ;(value as MethodCanDownload).download = (url, dataOrParams, config) =>
+          axios({
+            ...config,
+            ...(methodsHaveRequestBody.includes(method.toUpperCase())
+              ? { data: dataOrParams }
+              : { params: dataOrParams }),
+            responseType: 'blob',
+            method,
+            url,
+          })
+      }
 
-    return [method, value]
-  })),
+      return [method, value]
+    }),
+  ),
   DOWNLOAD: (url: string, fileName = ''): void => {
     // 如果是浏览器支持预览的文件会优先预览，否则才会下载
     // window.open(url + stringify(params, { addQueryPrefix: true }))
