@@ -82,7 +82,7 @@ npm i axios-shortcut
 
 ```
 
-### CDN + UMD
+### CDN + IIFE
 
 ```html
 <!DOCTYPE html>
