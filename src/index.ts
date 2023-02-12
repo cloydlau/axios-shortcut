@@ -15,16 +15,28 @@ const methods = ['GET', 'PUT', 'POST', 'HEAD', 'DELETE', 'OPTIONS']
 const methodsHaveRequestBody = ['PUT', 'POST', 'PATCH']
 const methodsHaveResponseBody = ['GET', 'POST', 'PATCH', 'OPTIONS']
 
-type Method = (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
+type Method = (
+  url: string,
+  dataOrParams?: any,
+  config?: AxiosRequestConfig<any>,
+) => Promise<AxiosResponse<any>>
 
 interface MethodCanUpload {
   (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
-  upload: (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
+  upload: (
+    url: string,
+    dataOrParams?: any,
+    config?: AxiosRequestConfig<any>,
+  ) => Promise<AxiosResponse<any>>
 }
 
 interface MethodCanDownload {
   (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>): Promise<AxiosResponse<any>>
-  download: (url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
+  download: (
+    url: string,
+    dataOrParams?: any,
+    config?: AxiosRequestConfig<any>,
+  ) => Promise<AxiosResponse<any>>
 }
 
 export default (axios: AxiosInstance) => ({
