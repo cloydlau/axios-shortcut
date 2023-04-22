@@ -12,7 +12,7 @@
   <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=dependencies"><img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-green.svg"></a>
   <a href="https://bundlephobia.com/package/axios-shortcut"><img alt="minzipped size" src="https://img.shields.io/bundlephobia/minzip/axios-shortcut"></a>
   <a href="https://standardjs.com"><img alt="code style" src="https://img.shields.io/badge/code_style-Standard-F3DF49.svg?logo=standardjs"></a>
-  <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits&logoColor=white"></a>
+  <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits"></a>
 </p>
 
 <br>
