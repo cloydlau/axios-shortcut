@@ -3,7 +3,6 @@
   "PascalCasedName": "AxiosShortcut",
   "version": "0.1.1",
   "private": false,
-  "packageManager": "pnpm@7.18.2",
   "description": "Shortcuts for axios.",
   "author": "Cloyd Lau",
   "license": "MIT",
@@ -38,6 +37,7 @@
     "release": "npx lint-staged && pnpm build && cl release"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "latest",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@types/lodash-es": "latest",
@@ -45,17 +45,17 @@
     "@types/qs": "latest",
     "axios": "latest",
     "case-police": "latest",
+    "eslint": "latest",
     "husky": "latest",
     "lint-staged": "latest",
-    "rome": "latest",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
     "vitepress": "latest"
   },
   "lint-staged": {
-    "{src,__tests__}/**.{js,ts}": "rome check",
-    "*.md": "case-police --fix"
+    "*.md": "case-police --fix",
+    "*": "eslint --fix"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

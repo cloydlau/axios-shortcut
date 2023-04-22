@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=dependencies"><img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-green.svg"></a>
   <a href="https://bundlephobia.com/package/axios-shortcut"><img alt="minzipped size" src="https://img.shields.io/bundlephobia/minzip/axios-shortcut"></a>
-  <a href="https://rome.tools"><img alt="code style" src="https://img.shields.io/badge/code_style-Rome-FFC905.svg?logo=rome"></a>
+  <a href="https://standardjs.com"><img alt="code style" src="https://img.shields.io/badge/code_style-Standard-F3DF49.svg"></a>
   <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits&logoColor=white"></a>
 </p>
 
@@ -56,8 +56,8 @@ npm i axios-shortcut
   <script type="importmap">
     {
       "imports": {
-        "axios": "https://unpkg.com/axios/dist/esm/axios.min.js",
-        "axios-shortcut": "https://unpkg.com/axios-shortcut@0.1/dist/axios-shortcut.mjs"
+        "axios": "https://cdn.jsdelivr.net/npm/axios/dist/esm/axios.min.js",
+        "axios-shortcut": "https://cdn.jsdelivr.net/npm/axios-shortcut@0.1/dist/axios-shortcut.mjs"
       }
     }
   </script>
@@ -93,8 +93,8 @@ npm i axios-shortcut
 </head>
 
 <body>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://unpkg.com/axios-shortcut@0.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios-shortcut@0.1"></script>
   <script>
     const {
       GET,
@@ -121,6 +121,7 @@ npm i axios-shortcut
 ```ts
 import AxiosShortcut from 'axios-shortcut'
 import axios from 'axios'
+
 const axiosShortcut = AxiosShortcut(axios)
 ```
 
@@ -129,6 +130,7 @@ const axiosShortcut = AxiosShortcut(axios)
 ```ts
 import AxiosShortcut from 'axios-shortcut'
 import request from '@/utils/request'
+
 const axiosShortcut = AxiosShortcut(request)
 ```
 
@@ -153,7 +155,7 @@ for (const k in axiosShortcut) {
 Request Header: `Content-Type: multipart/form-data`
 
 ```ts
-upload(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
+(url: string, dataOrParams?: any, config?: AxiosRequestConfig<any>) => Promise<AxiosResponse<any>>
 ```
 
 - `PUT.upload`
@@ -186,7 +188,7 @@ And the default value of `AxiosRequestConfig.responseType` is `'json'`
 Response Header: `Content-Disposition: attachment`
 
 ```ts
-(url: string, fileName = '') => void
+(url: string, fileName = '') => undefined
 ```
 
 ### Remote Static Resources (URLs)

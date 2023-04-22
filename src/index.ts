@@ -55,7 +55,7 @@ export default (axios: AxiosInstance) => ({
         }))
 
       if (methodsHaveRequestBody.includes(method)) {
-        ;(value as MethodCanUpload).upload = (url, dataOrParams, config) =>
+        (value as MethodCanUpload).upload = (url, dataOrParams, config) =>
           axios({
             ...config,
             data: plainObjectToFormData(dataOrParams),
@@ -65,7 +65,7 @@ export default (axios: AxiosInstance) => ({
       }
 
       if (methodsHaveResponseBody.includes(method)) {
-        ;(value as MethodCanDownload).download = (url, dataOrParams, config) =>
+        (value as MethodCanDownload).download = (url, dataOrParams, config) =>
           axios({
             ...config,
             ...(methodsHaveRequestBody.includes(method.toUpperCase())
