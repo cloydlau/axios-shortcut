@@ -1,17 +1,16 @@
 {
   "name": "axios-shortcut",
   "PascalCasedName": "AxiosShortcut",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
-  "description": "Shortcuts for axios.",
+  "description": "Shortcuts for [Axios](https://github.com/axios/axios).",
   "author": "Cloyd Lau (https://github.com/cloydlau)",
   "license": "MIT",
   "repository": "https://github.com/cloydlau/axios-shortcut",
   "keywords": [
     "axios",
     "download",
-    "upload",
-    "wrapper"
+    "upload"
   ],
   "exports": {
     ".": {
@@ -54,6 +53,7 @@
     "esno": "latest",
     "kolorist": "latest",
     "lint-staged": "latest",
+    "open": "latest",
     "prompts": "latest",
     "semver": "latest",
     "simple-git-hooks": "latest",

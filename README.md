@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  Shortcuts for Axios.
+  Shortcuts for [Axios](https://github.com/axios/axios).
 </p>
 
 <p align="center">
