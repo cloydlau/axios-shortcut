@@ -4,19 +4,20 @@
   "version": "0.1.1",
   "private": false,
   "description": "Shortcuts for axios.",
-  "author": "Cloyd Lau",
+  "author": "Cloyd Lau (https://github.com/cloydlau)",
   "license": "MIT",
   "repository": "https://github.com/cloydlau/axios-shortcut",
   "keywords": [
     "axios",
     "download",
-    "upload"
+    "upload",
+    "wrapper"
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/axios-shortcut.umd.js",
-      "import": "./dist/axios-shortcut.mjs"
+      "types": "./dist/axios-shortcut.d.ts",
+      "import": "./dist/axios-shortcut.mjs",
+      "require": "./dist/axios-shortcut.umd.js"
     },
     "./*": "./*"
   },
@@ -24,7 +25,7 @@
   "module": "./dist/axios-shortcut.mjs",
   "unpkg": "./dist/axios-shortcut.umd.js",
   "jsdelivr": "./dist/axios-shortcut.umd.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/axios-shortcut.d.ts",
   "files": [
     "dist",
     "docs"
@@ -34,10 +35,12 @@
     "serve": "vite preview",
     "doc": "vitepress dev --open /README",
     "build": "vite build",
-    "release": "npx lint-staged && pnpm build && cl release"
+    "release": "esno ./scripts/release.mts",
+    "preinstall": "node -e \"if (process.env.INIT_CWD === process.cwd()) { process.exit(1) }\" || npx only-allow pnpm",
+    "postinstall": "node -e \"if (process.env.INIT_CWD === process.cwd()) { process.exit(1) }\" || npx simple-git-hooks"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "latest",
+    "@antfu/eslint-config": "~0.42.1",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@types/lodash-es": "latest",
@@ -45,19 +48,26 @@
     "@types/qs": "latest",
     "axios": "latest",
     "case-police": "latest",
+    "cross-spawn": "latest",
+    "del": "latest",
     "eslint": "latest",
-    "husky": "latest",
+    "esno": "latest",
+    "kolorist": "latest",
     "lint-staged": "latest",
+    "prompts": "latest",
+    "semver": "latest",
+    "simple-git-hooks": "latest",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
     "vitepress": "latest"
   },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false",
+    "commit-msg": "npx --no -- commitlint --edit ${1}"
+  },
   "lint-staged": {
     "*.md": "case-police --fix",
-    "*": "eslint --fix"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "*": "eslint --cache --ignore-pattern 'demo.ts' --fix"
   }
 }
