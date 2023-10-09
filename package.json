@@ -4,7 +4,10 @@
   "version": "0.1.2",
   "private": false,
   "description": "Shortcuts for [Axios](https://github.com/axios/axios).",
-  "author": "Cloyd Lau (https://github.com/cloydlau)",
+  "author": {
+    "name": "Cloyd Lau",
+    "url": "https://github.com/cloydlau"
+  },
   "license": "MIT",
   "repository": "https://github.com/cloydlau/axios-shortcut",
   "keywords": [
