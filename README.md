@@ -215,6 +215,6 @@ DOWNLOAD(objectURL, 'xxx.json')
 
 ## Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/cloydlau/axios-shortcut/releases).
+Detailed changes for each release are documented in the [release notes](https://github.com/cloydlau/axios-shortcut/releases)
 
 <br>
