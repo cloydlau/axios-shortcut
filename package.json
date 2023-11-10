@@ -34,6 +34,7 @@
   ],
   "scripts": {
     "dev": "vite --open",
+    "up": "nu -L !@antfu/eslint-config && ni",
     "serve": "vite preview",
     "doc": "vitepress dev --open /README",
     "build": "vite build",
@@ -60,12 +61,13 @@
     "only-allow": "latest",
     "open": "latest",
     "prompts": "latest",
+    "rollup-plugin-visualizer": "latest",
     "semver": "latest",
     "simple-git-hooks": "latest",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
-    "vitepress": "latest"
+    "vitepress": "1.0.0-rc.25"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged --concurrent false",
