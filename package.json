@@ -1,7 +1,7 @@
 {
   "name": "axios-shortcut",
   "PascalCasedName": "AxiosShortcut",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "description": "Shortcuts for [Axios](https://github.com/axios/axios).",
   "author": {
@@ -67,7 +67,7 @@
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
-    "vitepress": "1.0.0-rc.25"
+    "vitepress": "1.0.0-rc.32"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged --concurrent false",
@@ -75,6 +75,6 @@
   },
   "lint-staged": {
     "*.md": "case-police --fix",
-    "*": "eslint --cache --ignore-pattern 'demo.ts' --fix"
+    "{scripts,src}": "eslint --cache --fix"
   }
 }
