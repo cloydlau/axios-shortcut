@@ -70,7 +70,7 @@
     "vitepress": "1.0.0-rc.32"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged --concurrent false",
+    "pre-commit": "pnpm lint-staged",
     "commit-msg": "npx --no -- commitlint --edit ${1}"
   },
   "lint-staged": {
