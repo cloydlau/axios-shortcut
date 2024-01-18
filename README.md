@@ -20,7 +20,7 @@
 ## Compare to Axios
 
 | Axios                        | Axios Instance               | Axios Shortcut                       |
-|------------------------------|------------------------------|--------------------------------------|
+| ---------------------------- | ---------------------------- | ------------------------------------ |
 | -                            | getUri([config])             | -                                    |
 | request(config)              | request(config)              | -                                    |
 | get(url[, config])           | get(url[, config])           | **GET(url[, params[, config]])**     |
@@ -45,70 +45,49 @@ npm i axios-shortcut
 ### CDN + ESM
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-</head>
-
-<body>
-  <script type="importmap">
-    {
-      "imports": {
-        "axios": "https://cdn.jsdelivr.net/npm/axios/dist/esm/axios.min.js",
-        "axios-shortcut": "https://cdn.jsdelivr.net/npm/axios-shortcut@0.1/dist/axios-shortcut.mjs"
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "axios": "https://cdn.jsdelivr.net/npm/axios/dist/esm/axios.min.js",
+          "axios-shortcut": "https://cdn.jsdelivr.net/npm/axios-shortcut@0.1/dist/axios-shortcut.mjs"
+        }
       }
-    }
-  </script>
-  <script type="module">
-    import AxiosShortcut from 'axios-shortcut'
-    import axios from 'axios'
+    </script>
+    <script type="module">
+      import AxiosShortcut from 'axios-shortcut'
+      import axios from 'axios'
 
-    const {
-      GET,
-      DELETE,
-      HEAD,
-      OPTIONS,
-      POST,
-      PUT,
-      PATCH,
-      DOWNLOAD,
-    } = AxiosShortcut(axios)
-  </script>
-</body>
-
+      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } =
+        AxiosShortcut(axios)
+    </script>
+  </body>
 </html>
-
 ```
 
 ### CDN + IIFE
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-</head>
-
-<body>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios-shortcut@0.1"></script>
-  <script>
-    const {
-      GET,
-      DELETE,
-      HEAD,
-      OPTIONS,
-      POST,
-      PUT,
-      PATCH,
-      DOWNLOAD,
-    } = AxiosShortcut(axios)
-  </script>
-</body>
-
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios-shortcut@0.1"></script>
+    <script>
+      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } =
+        AxiosShortcut(axios)
+    </script>
+  </body>
 </html>
 ```
 

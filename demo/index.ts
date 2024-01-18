@@ -1,5 +1,5 @@
 import axios from 'axios'
-import AxiosShortcut from './src/index'
+import AxiosShortcut from '../src/index'
 
 const {
   GET,

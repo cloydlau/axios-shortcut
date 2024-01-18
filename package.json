@@ -34,17 +34,18 @@
   ],
   "scripts": {
     "dev": "vite --open",
-    "up": "nu -L !@antfu/eslint-config && ni",
     "serve": "vite preview",
     "doc": "vitepress dev --open /README",
     "build": "vite build",
     "release": "esno ./scripts/release.mts",
+    "lint": "eslint \"**/*.{vue,js,ts,mjs,mts,jsx,tsx,md,json}\"",
+    "lint:fix": "eslint \"**/*.{vue,js,ts,mjs,mts,jsx,tsx,md,json}\" --fix",
     "pnpm:devPreinstall": "node ./scripts/devPreinstall.mjs",
     "preinstall": "node -e \"if (process.env.INIT_CWD === process.cwd()) { process.exit(1) }\" || npx only-allow pnpm",
     "postinstall": "node -e \"if (process.env.INIT_CWD === process.cwd()) { process.exit(1) }\" || npx simple-git-hooks"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "~0.42.1",
+    "@antfu/eslint-config": "latest",
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@types/lodash-es": "latest",
@@ -54,7 +55,9 @@
     "case-police": "latest",
     "cross-spawn": "latest",
     "del": "latest",
-    "eslint": "latest",
+    "eslint": "npm:eslint-ts-patch@latest",
+    "eslint-plugin-format": "latest",
+    "eslint-ts-patch": "latest",
     "esno": "latest",
     "kolorist": "latest",
     "lint-staged": "latest",
@@ -67,7 +70,7 @@
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
-    "vitepress": "1.0.0-rc.32"
+    "vitepress": "latest"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
