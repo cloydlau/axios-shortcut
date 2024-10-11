@@ -3,16 +3,14 @@ import antfu from '@antfu/eslint-config'
 export default antfu(
   {
     formatters: true,
-    ignores: ['demo/'],
+    lessOpinionated: true,
   },
   {
     rules: {
-      'curly': ['error', 'multi-line'],
+      'brace-style': ['error', 'stroustrup', { allowSingleLine: false }],
+      'curly': ['error', 'all'],
       'no-console': 'off',
-      'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-      'vue/attribute-hyphenation': 'off',
-      'vue/custom-event-name-casing': 'off',
-      'vue/max-attributes-per-line': ['error', { singleline: 1, multiline: 1 }],
+      'vue/max-attributes-per-line': ['error', { singleline: 3 }],
       'vue/no-deprecated-v-bind-sync': 'off',
       'vue/no-deprecated-v-on-native-modifier': 'off',
       'vue/no-deprecated-destroyed-lifecycle': 'off',

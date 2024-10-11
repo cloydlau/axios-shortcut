@@ -2,13 +2,7 @@ import axios from 'axios'
 import AxiosShortcut from '../src/index'
 
 const {
-  GET,
-  DELETE,
-  HEAD,
-  OPTIONS,
   POST,
-  PUT,
-  PATCH,
   DOWNLOAD,
 } = AxiosShortcut(axios)
 

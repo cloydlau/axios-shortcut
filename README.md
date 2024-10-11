@@ -5,14 +5,17 @@
 </h1>
 
 <p align="center">
-  Shortcuts for [Axios](https://github.com/axios/axios).
+  Shortcuts for <a href="https://github.com/axios/axios">Axios</a>.
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=dependencies"><img alt="zero dependencies" src="https://img.shields.io/badge/dependencies-0-green.svg"></a>
+  <!-- <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=dependencies"><img alt="zero dependencies" src="https://badgen.net/bundlephobia/dependency-count/axios-shortcut"></a> -->
+  <a href="https://www.npmjs.com/package/axios-shortcut?activeTab=versions"><img alt="created at" src="https://img.shields.io/github/created-at/cloydlau/axios-shortcut?&color=1C404E&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNDggNDgiPjxnIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik04IDQwaDMyVjI0SDh6Ii8+PHBhdGggc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNCIgZD0iTTQwIDQwSDhtMzIgMEg0aDRtMzIgMGg0bS00IDBWMjRIOHYxNiIvPjxwYXRoIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjQiIGQ9Im00MCAzNGwtNC0ybC00IDJsLTQtMmwtNCAybC00LTJsLTQgMmwtNC0ybC00IDJtMjQtMTB2LTltLTggOXYtOW0tOCA5di05bTE2LTVWOG0tOCAyVjhtLTggMlY4TTggMjR2MTZtMzItMTZ2MTYiLz48L2c+PC9zdmc+"></a>
+  <a href="https://github.com/antfu/eslint-config"><img alt="code style" src="https://antfu.me/badge-code-style.svg"></a>
   <a href="https://bundlephobia.com/package/axios-shortcut"><img alt="minzipped size" src="https://img.shields.io/bundlephobia/minzip/axios-shortcut"></a>
   <a href="https://conventionalcommits.org"><img alt="conventional commits" src="https://img.shields.io/badge/commits-Conventional-FE5196.svg?logo=conventionalcommits"></a>
-  <a href="https://github.com/antfu/eslint-config"><img alt="code style" src="https://antfu.me/badge-code-style.svg"></a>
+  <a href="https://semantic-release.gitbook.io"><img alt="semantic release" src="https://img.shields.io/badge/release-semantic-e10079?logo=semantic-release"></a>
+  <a href="https://pr.new"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
 </p>
 
 <br>
@@ -64,8 +67,7 @@ npm i axios-shortcut
       import AxiosShortcut from 'axios-shortcut'
       import axios from 'axios'
 
-      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } =
-        AxiosShortcut(axios)
+      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } = AxiosShortcut(axios)
     </script>
   </body>
 </html>
@@ -84,8 +86,7 @@ npm i axios-shortcut
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios-shortcut@0.1"></script>
     <script>
-      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } =
-        AxiosShortcut(axios)
+      const { GET, DELETE, HEAD, OPTIONS, POST, PUT, PATCH, DOWNLOAD } = AxiosShortcut(axios)
     </script>
   </body>
 </html>
@@ -98,8 +99,8 @@ npm i axios-shortcut
 ### Create from Axios
 
 ```ts
-import AxiosShortcut from 'axios-shortcut'
 import axios from 'axios'
+import AxiosShortcut from 'axios-shortcut'
 
 const axiosShortcut = AxiosShortcut(axios)
 ```
@@ -107,8 +108,8 @@ const axiosShortcut = AxiosShortcut(axios)
 ### Create from Axios Instance
 
 ```ts
-import AxiosShortcut from 'axios-shortcut'
 import request from '@/utils/request'
+import AxiosShortcut from 'axios-shortcut'
 
 const axiosShortcut = AxiosShortcut(request)
 ```

@@ -1,6 +1,5 @@
-import dts from 'vite-plugin-dts'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { PascalCasedName, name } from './package.json'
+import { name, PascalCasedName } from './package.json'
 
 export default {
   build: {
@@ -18,7 +17,6 @@ export default {
     },
   },
   plugins: [
-    dts({ rollupTypes: true }),
     { ...visualizer(), apply: 'build' },
   ],
 }
