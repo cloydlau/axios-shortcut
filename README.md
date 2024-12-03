@@ -178,6 +178,14 @@ Response Header: `Content-Disposition: attachment`
 DOWNLOAD('https://xxx.jpg', 'xxx.jpg')
 ```
 
+### Remote Cross Origin Static Resources (URLs)
+
+```ts
+GET.download('https://xxx.jpg').then((res) => {
+  DOWNLOAD(URL.createObjectURL(res.data), 'xxx.jpg')
+})
+```
+
 ### Local Static Resources (Object URLs)
 
 ```ts
